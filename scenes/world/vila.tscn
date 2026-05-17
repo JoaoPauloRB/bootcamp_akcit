@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://c5prhe6xu8iy4"]
 
-[ext_resource type="Script" path="res://scripts/world/room.gd" id="1_room"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
-[ext_resource type="Script" path="res://scripts/world/room_transition.gd" id="4_transition"]
+[ext_resource type="Script" uid="uid://byr2t5f0xhjof" path="res://scripts/world/room.gd" id="1_room"]
+[ext_resource type="Script" uid="uid://cupufpgnw58x8" path="res://scripts/world/room_transition.gd" id="4_transition"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" uid="uid://cywv6mput5eki" path="res://scenes/player/warrior.tscn" id="6_warrior"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
 size = Vector2(320, 8)
@@ -14,72 +14,63 @@ size = Vector2(8, 180)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anvil"]
 size = Vector2(28, 20)
 
-[node name="Vila" type="Node2D"]
+[node name="Vila" type="Node2D" unique_id=1604417933]
 script = ExtResource("1_room")
 room_name = "Vila"
-room_size = Vector2(320, 180)
-player_spawn = Vector2(160, 90)
 music_track = "vila"
 
-[node name="Background" type="ColorRect" parent="."]
-offset_left = 0.0
-offset_top = 0.0
+[node name="Background" type="ColorRect" parent="." unique_id=140481680]
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.18, 0.22, 0.15, 1)
 
-[node name="TopWall" type="StaticBody2D" parent="."]
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=1196237211]
 position = Vector2(160, -4)
-collision_layer = 1
 collision_mask = 0
 
-[node name="TopShape" type="CollisionShape2D" parent="TopWall"]
+[node name="TopShape" type="CollisionShape2D" parent="TopWall" unique_id=1585416617]
 shape = SubResource("RectangleShape2D_top")
 
-[node name="BottomWall" type="StaticBody2D" parent="."]
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=1311800517]
 position = Vector2(160, 184)
-collision_layer = 1
 collision_mask = 0
 
-[node name="BottomShape" type="CollisionShape2D" parent="BottomWall"]
+[node name="BottomShape" type="CollisionShape2D" parent="BottomWall" unique_id=1819478363]
 shape = SubResource("RectangleShape2D_top")
 
-[node name="LeftWall" type="StaticBody2D" parent="."]
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=373704311]
 position = Vector2(-4, 90)
-collision_layer = 1
 collision_mask = 0
 
-[node name="LeftShape" type="CollisionShape2D" parent="LeftWall"]
+[node name="LeftShape" type="CollisionShape2D" parent="LeftWall" unique_id=840951449]
 shape = SubResource("RectangleShape2D_side")
 
-[node name="ExitRight" type="Area2D" parent="."]
+[node name="ExitRight" type="Area2D" parent="." unique_id=858319021]
 position = Vector2(316, 90)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_transition")
 target_room_path = "res://scenes/world/floresta.tscn"
 target_spawn = Vector2(20, 90)
-direction = "right"
 
-[node name="ExitRightShape" type="CollisionShape2D" parent="ExitRight"]
+[node name="ExitRightShape" type="CollisionShape2D" parent="ExitRight" unique_id=843383966]
 shape = SubResource("RectangleShape2D_side")
 
-[node name="Anvil" type="StaticBody2D" parent="."]
+[node name="Anvil" type="StaticBody2D" parent="." unique_id=1780527639]
 position = Vector2(60, 80)
-collision_layer = 1
 collision_mask = 0
 
-[node name="AnvilShape" type="CollisionShape2D" parent="Anvil"]
+[node name="AnvilShape" type="CollisionShape2D" parent="Anvil" unique_id=215678082]
 shape = SubResource("RectangleShape2D_anvil")
 
-[node name="AnvilVisual" type="ColorRect" parent="Anvil"]
+[node name="AnvilVisual" type="ColorRect" parent="Anvil" unique_id=1287180693]
 offset_left = -14.0
 offset_top = -10.0
 offset_right = 14.0
 offset_bottom = 10.0
 color = Color(0.4, 0.35, 0.3, 1)
 
-[node name="AnvilLabel" type="Label" parent="Anvil"]
+[node name="AnvilLabel" type="Label" parent="Anvil" unique_id=1410631704]
 offset_left = -14.0
 offset_top = -20.0
 offset_right = 14.0
@@ -88,7 +79,7 @@ theme_override_font_sizes/font_size = 6
 text = "Anvil"
 horizontal_alignment = 1
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=452421797 instance=ExtResource("6_warrior")]
 position = Vector2(160, 90)
 
-[node name="HUD" parent="." instance=ExtResource("5_hud")]
+[node name="HUD" parent="." unique_id=427542335 instance=ExtResource("5_hud")]

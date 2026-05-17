@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cywv6mput5eki"]
+
+[ext_resource type="Script" uid="uid://c14i5sn38a8jo" path="res://scripts/player/warrior.gd" id="1_warrior_script"]
+[ext_resource type="Texture2D" uid="uid://bownvohjfg3ma" path="res://assets/rpg/sprites/player/warrior/warrior_walk.png" id="2_warrior_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(30, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(14, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 8)
+
+[node name="Warrior" type="CharacterBody2D" unique_id=2107361482]
+collision_layer = 2
+script = ExtResource("1_warrior_script")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1561202611]
+texture = ExtResource("2_warrior_tex")
+hframes = 4
+
+[node name="HitboxPivot" type="Node2D" parent="." unique_id=1768375233]
+
+[node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=1901341709]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="HitboxShape" type="CollisionShape2D" parent="HitboxPivot/Hitbox" unique_id=2096571825]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_hitbox")
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1931357183]
+collision_layer = 0
+collision_mask = 16
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox" unique_id=576304068]
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=951950254]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1933265071]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
