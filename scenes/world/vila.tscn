@@ -54,7 +54,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_transition")
 target_room_path = "res://scenes/world/floresta.tscn"
-target_spawn = Vector2(20, 90)
+target_spawn = Vector2(20, 384)
 
 [node name="ExitRightShape" type="CollisionShape2D" parent="ExitRight" unique_id=843383966]
 position = Vector2(2, -3)
@@ -62,5 +62,6 @@ shape = SubResource("RectangleShape2D_side")
 
 [node name="Player" parent="." unique_id=452421797 instance=ExtResource("6_warrior")]
 position = Vector2(512, 384)
+speed = 160.0
 
 [node name="HUD" parent="." unique_id=427542335 instance=ExtResource("5_hud")]

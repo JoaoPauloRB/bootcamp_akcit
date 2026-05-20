@@ -31,7 +31,7 @@ var is_boss_defeated: bool = false
 
 # --- Room Management ---
 var current_room_name: String = "Vila"
-var _pending_spawn: Vector2 = Vector2(160, 90)
+var _pending_spawn: Vector2 = Vector2(512, 384)
 
 # --- Health ---
 

@@ -54,7 +54,7 @@ const PIVOT_ROTATIONS: Dictionary = {
 
 # --- Export Variables ---
 @export_group("Movement")
-@export var speed: float = 80.0
+@export var speed: float = 220.0
 
 @export_group("Combat")
 @export var attack_damage: int = 1
@@ -282,7 +282,7 @@ func _respawn() -> void:
 	# Reset via GameManager and go back to Vila
 	if GameManager:
 		GameManager.respawn_player()
-	GameManager.change_room("res://scenes/world/vila.tscn", Vector2(160, 90))
+	GameManager.change_room("res://scenes/world/vila.tscn", Vector2(512, 384))
 
 
 func _flash_damage() -> void:

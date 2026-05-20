@@ -25,5 +25,5 @@ func _ready() -> void:
 
 func _return_to_vila() -> void:
 	get_tree().paused = false
-	GameManager.change_room("res://scenes/world/vila.tscn", Vector2(160, 90))
+	GameManager.change_room("res://scenes/world/vila.tscn", Vector2(512, 384))
 	queue_free()

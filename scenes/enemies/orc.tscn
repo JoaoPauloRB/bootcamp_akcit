@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://hbfavrx8g3xk"]
+
+[ext_resource type="Script" uid="uid://xlmq4561jbhw" path="res://scripts/enemies/orc.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cfyd654n50je2" path="res://assets/rpg/sprites/enemies/orc.png" id="2_orc_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(24, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(20, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aggro"]
+radius = 120.0
+
+[node name="Orc" type="CharacterBody2D" unique_id=428382081]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1891298390]
+position = Vector2(0, 4)
+texture = ExtResource("2_orc_tex")
+hframes = 4
+vframes = 4
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1496014579]
+collision_layer = 0
+collision_mask = 8
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox" unique_id=1407759380]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=940060813]
+collision_layer = 16
+collision_mask = 2
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=740438092]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1349562402]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="AggroRange" type="Area2D" parent="." unique_id=771169249]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="AggroShape" type="CollisionShape2D" parent="AggroRange" unique_id=1836848667]
+shape = SubResource("CircleShape2D_aggro")
