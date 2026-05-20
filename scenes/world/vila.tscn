@@ -6,47 +6,50 @@
 [ext_resource type="PackedScene" uid="uid://cywv6mput5eki" path="res://scenes/player/warrior.tscn" id="6_warrior"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
-size = Vector2(320, 8)
+size = Vector2(1031, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_side"]
-size = Vector2(8, 180)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_anvil"]
-size = Vector2(28, 20)
+size = Vector2(9.5, 768.5)
 
 [node name="Vila" type="Node2D" unique_id=1604417933]
 script = ExtResource("1_room")
 room_name = "Vila"
+room_size = Vector2(1024, 768)
+player_spawn = Vector2(500, 350)
 music_track = "vila"
 
 [node name="Background" type="ColorRect" parent="." unique_id=140481680]
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 1024.0
+offset_bottom = 768.0
 color = Color(0.18, 0.22, 0.15, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="TopWall" type="StaticBody2D" parent="." unique_id=1196237211]
-position = Vector2(160, -4)
+position = Vector2(512, -6)
 collision_mask = 0
 
 [node name="TopShape" type="CollisionShape2D" parent="TopWall" unique_id=1585416617]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_top")
 
 [node name="BottomWall" type="StaticBody2D" parent="." unique_id=1311800517]
-position = Vector2(160, 184)
+position = Vector2(512, 766)
 collision_mask = 0
 
 [node name="BottomShape" type="CollisionShape2D" parent="BottomWall" unique_id=1819478363]
+position = Vector2(-1.5, 2)
 shape = SubResource("RectangleShape2D_top")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=373704311]
-position = Vector2(-4, 90)
+position = Vector2(6, 383)
 collision_mask = 0
 
 [node name="LeftShape" type="CollisionShape2D" parent="LeftWall" unique_id=840951449]
+position = Vector2(-6, -4.75)
 shape = SubResource("RectangleShape2D_side")
 
 [node name="ExitRight" type="Area2D" parent="." unique_id=858319021]
-position = Vector2(316, 90)
+position = Vector2(1022, 384)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_transition")
@@ -54,32 +57,10 @@ target_room_path = "res://scenes/world/floresta.tscn"
 target_spawn = Vector2(20, 90)
 
 [node name="ExitRightShape" type="CollisionShape2D" parent="ExitRight" unique_id=843383966]
+position = Vector2(2, -3)
 shape = SubResource("RectangleShape2D_side")
 
-[node name="Anvil" type="StaticBody2D" parent="." unique_id=1780527639]
-position = Vector2(60, 80)
-collision_mask = 0
-
-[node name="AnvilShape" type="CollisionShape2D" parent="Anvil" unique_id=215678082]
-shape = SubResource("RectangleShape2D_anvil")
-
-[node name="AnvilVisual" type="ColorRect" parent="Anvil" unique_id=1287180693]
-offset_left = -14.0
-offset_top = -10.0
-offset_right = 14.0
-offset_bottom = 10.0
-color = Color(0.4, 0.35, 0.3, 1)
-
-[node name="AnvilLabel" type="Label" parent="Anvil" unique_id=1410631704]
-offset_left = -14.0
-offset_top = -20.0
-offset_right = 14.0
-offset_bottom = -10.0
-theme_override_font_sizes/font_size = 6
-text = "Anvil"
-horizontal_alignment = 1
-
 [node name="Player" parent="." unique_id=452421797 instance=ExtResource("6_warrior")]
-position = Vector2(160, 90)
+position = Vector2(512, 384)
 
 [node name="HUD" parent="." unique_id=427542335 instance=ExtResource("5_hud")]

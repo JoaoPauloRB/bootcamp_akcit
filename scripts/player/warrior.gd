@@ -10,7 +10,7 @@ enum Direction { DOWN = 0, LEFT = 1, RIGHT = 2, UP = 3 }
 enum State { IDLE, WALK, ATTACK, HURT, DEATH }
 
 # --- Constants ---
-const FRAME_COUNT: int = 4
+const FRAME_COUNT: int = 6
 const CYCLE_DURATION: float = 0.6
 
 # --- Export Variables ---
@@ -30,7 +30,7 @@ var current_anim_frame: int = 0
 func _ready() -> void:
 	# Initial setup
 	sprite.hframes = FRAME_COUNT
-	sprite.vframes = 1
+	sprite.vframes = 4
 	
 	# Connect to GameManager if available for spawn
 	if Engine.has_singleton("GameManager") or has_node("/root/GameManager"):
@@ -40,6 +40,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
 	_animate(delta)
+	_check_map_transitions()
 
 func _handle_movement(_delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -61,11 +62,8 @@ func _update_facing(input_dir: Vector2) -> void:
 		if input_dir.y > 0.0: facing = Direction.DOWN
 		else: facing = Direction.UP
 	
-	# Flip sprite when moving left
-	if facing == Direction.LEFT:
-		sprite.flip_h = true
-	elif facing == Direction.RIGHT:
-		sprite.flip_h = false
+	# With 4 rows (one for each direction), we do not flip the sprite
+	sprite.flip_h = false
 
 func _animate(delta: float) -> void:
 	if current_state == State.IDLE:
@@ -82,5 +80,33 @@ func _animate(delta: float) -> void:
 	_update_sprite_frame()
 
 func _update_sprite_frame() -> void:
-	# Asset only has 1 row, so we just use the animation frame
-	sprite.frame = clampi(current_anim_frame, 0, FRAME_COUNT - 1)
+	var row: int = facing as int
+	# Swap left (1) and right (2) rows because they are inverted in the sprite sheet
+	if row == 1:
+		row = 2
+	elif row == 2:
+		row = 1
+	sprite.frame = (row * sprite.hframes) + clampi(current_anim_frame, 0, FRAME_COUNT - 1)
+
+func _check_map_transitions() -> void:
+	var parent_room = get_parent()
+	if parent_room and "room_size" in parent_room:
+		var room_size: Vector2 = parent_room.room_size
+		var transition_node: Node = null
+		
+		# Warrior collision shape is 40px wide (20px half-width), so we use a 24px threshold
+		if global_position.x >= room_size.x - 24:
+			transition_node = parent_room.get_node_or_null("ExitRight")
+		elif global_position.x <= 24:
+			transition_node = parent_room.get_node_or_null("ExitLeft")
+		elif global_position.y <= 24:
+			transition_node = parent_room.get_node_or_null("ExitTop")
+		elif global_position.y >= room_size.y - 24:
+			transition_node = parent_room.get_node_or_null("ExitBottom")
+			
+		if transition_node and "target_room_path" in transition_node:
+			var target_path: String = transition_node.target_room_path
+			var spawn_pos: Vector2 = transition_node.target_spawn
+			if target_path != "" and (Engine.has_singleton("GameManager") or has_node("/root/GameManager")):
+				var gm = get_node("/root/GameManager")
+				gm.change_room(target_path, spawn_pos)
