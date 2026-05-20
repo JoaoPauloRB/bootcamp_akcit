@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/slime.tscn" id="3_slime"]
 [ext_resource type="Script" uid="uid://cupufpgnw58x8" path="res://scripts/world/room_transition.gd" id="4_transition"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/orc.tscn" id="6_orc"]
+[ext_resource type="PackedScene" uid="uid://hbfavrx8g3xk" path="res://scenes/enemies/orc.tscn" id="6_orc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
 size = Vector2(1024, 8)
@@ -21,7 +21,7 @@ script = ExtResource("1_room")
 room_name = "Floresta"
 room_size = Vector2(1024, 768)
 player_spawn = Vector2(20, 384)
-music_track = "floresta"
+music_track = "floresta_v2"
 
 [node name="Background" type="ColorRect" parent="." unique_id=1579243861]
 offset_right = 1024.0
@@ -90,10 +90,10 @@ damage = 2
 speed = 40.0
 drop_chance = 1.0
 
-[node name="Orc1" parent="." instance=ExtResource("6_orc")]
+[node name="Orc1" parent="." unique_id=898912010 instance=ExtResource("6_orc")]
 position = Vector2(600, 300)
 
-[node name="Orc2" parent="." instance=ExtResource("6_orc")]
+[node name="Orc2" parent="." unique_id=2055251212 instance=ExtResource("6_orc")]
 position = Vector2(400, 600)
 
 [node name="Player" parent="." unique_id=1225617888 instance=ExtResource("2_player")]

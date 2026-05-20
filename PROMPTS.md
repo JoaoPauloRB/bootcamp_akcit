@@ -47,5 +47,5 @@ No text, no UI, no borders, no watermarks.
 
 Generate a character sprite sheet (tileset) for a top-down RPG. Maintain the character's exact identity and design in these poses: 1) Idle (facing forward), 2) Walking Right (4 frame animation loop), 3) Attacking (4 frame animation sequence), 4) Hurt (4 frame animation)
 ![image4](.\assets\generated\dragon\dragon.png)
-![image5](.\assets\generated\dragon\dragon_attack.png)
+![image5](.\assets\generated\dragon\dragon_sprite.png)
 ![image6](.\assets\generated\dragon\dragon_hurt.png)

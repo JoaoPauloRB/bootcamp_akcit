@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c6lqd8r446d32"]
+
+[ext_resource type="Script" uid="uid://d3r5g7y6j1v98" path="res://scripts/enemies/dragon.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dq7r6k5l3m2n1" path="res://assets/rpg/sprites/enemies/dragon.png" id="2_dragon_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(180, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(200, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(120, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aggro"]
+radius = 999.0
+
+[node name="Dragon" type="CharacterBody2D" unique_id=581938102]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=983102381]
+texture = ExtResource("2_dragon_tex")
+hframes = 4
+vframes = 3
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=238102948]
+collision_layer = 0
+collision_mask = 8
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox" unique_id=830219483]
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=749102830]
+collision_layer = 16
+collision_mask = 2
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=930182740]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=830182741]
+position = Vector2(0, 70)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="AggroRange" type="Area2D" parent="." unique_id=920182742]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="AggroShape" type="CollisionShape2D" parent="AggroRange" unique_id=381029381]
+shape = SubResource("CircleShape2D_aggro")

@@ -1,17 +1,12 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://dlc6c6ib22l6g"]
 
-[ext_resource type="Script" path="res://scripts/world/room.gd" id="1_room"]
+[ext_resource type="Script" uid="uid://byr2t5f0xhjof" path="res://scripts/world/room.gd" id="1_room"]
 [ext_resource type="PackedScene" uid="uid://cywv6mput5eki" path="res://scenes/player/warrior.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/slime.tscn" id="3_slime"]
-[ext_resource type="Script" path="res://scripts/world/room_transition.gd" id="4_transition"]
+[ext_resource type="Script" uid="uid://cupufpgnw58x8" path="res://scripts/world/room_transition.gd" id="4_transition"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/skeleton.tscn" id="6_skeleton"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
-size = Vector2(1024, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_side"]
-size = Vector2(8, 768)
+[ext_resource type="PackedScene" path="res://scenes/enemies/dragon.tscn" id="7_dragon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wide"]
 size = Vector2(1024, 8)
@@ -19,45 +14,43 @@ size = Vector2(1024, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tall"]
 size = Vector2(8, 768)
 
-[node name="Dungeon" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side"]
+size = Vector2(8, 768)
+
+[node name="Dungeon" type="Node2D" unique_id=1909150189]
 script = ExtResource("1_room")
 room_name = "Dungeon"
 room_size = Vector2(1024, 768)
 player_spawn = Vector2(20, 384)
-music_track = "dungeon"
+music_track = "dungeon_v2"
 
-[node name="Background" type="ColorRect" parent="."]
-offset_left = 0.0
-offset_top = 0.0
+[node name="Background" type="ColorRect" parent="." unique_id=1164619109]
 offset_right = 1024.0
 offset_bottom = 768.0
 color = Color(0.15, 0.12, 0.2, 1)
 
-[node name="TopWall" type="StaticBody2D" parent="."]
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=1833671177]
 position = Vector2(512, -4)
-collision_layer = 1
 collision_mask = 0
 
-[node name="TopShape" type="CollisionShape2D" parent="TopWall"]
+[node name="TopShape" type="CollisionShape2D" parent="TopWall" unique_id=2020980238]
 shape = SubResource("RectangleShape2D_wide")
 
-[node name="BottomWall" type="StaticBody2D" parent="."]
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=1635070196]
 position = Vector2(512, 772)
-collision_layer = 1
 collision_mask = 0
 
-[node name="BottomShape" type="CollisionShape2D" parent="BottomWall"]
+[node name="BottomShape" type="CollisionShape2D" parent="BottomWall" unique_id=1704281399]
 shape = SubResource("RectangleShape2D_wide")
 
-[node name="RightWall" type="StaticBody2D" parent="."]
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=866169746]
 position = Vector2(1028, 384)
-collision_layer = 1
 collision_mask = 0
 
-[node name="RightShape" type="CollisionShape2D" parent="RightWall"]
+[node name="RightShape" type="CollisionShape2D" parent="RightWall" unique_id=843890433]
 shape = SubResource("RectangleShape2D_tall")
 
-[node name="ExitLeft" type="Area2D" parent="."]
+[node name="ExitLeft" type="Area2D" parent="." unique_id=2118172388]
 position = Vector2(-4, 384)
 collision_layer = 0
 collision_mask = 2
@@ -66,10 +59,10 @@ target_room_path = "res://scenes/world/floresta.tscn"
 target_spawn = Vector2(1000, 384)
 direction = "left"
 
-[node name="ExitLeftShape" type="CollisionShape2D" parent="ExitLeft"]
+[node name="ExitLeftShape" type="CollisionShape2D" parent="ExitLeft" unique_id=744337985]
 shape = SubResource("RectangleShape2D_side")
 
-[node name="RedSlime1" parent="." instance=ExtResource("3_slime")]
+[node name="RedSlime1" parent="." unique_id=826546610 instance=ExtResource("3_slime")]
 position = Vector2(350, 200)
 slime_variant = 3
 max_hp = 4
@@ -78,7 +71,7 @@ speed = 50.0
 aggro_range = 128.0
 drop_chance = 1.0
 
-[node name="RedSlime2" parent="." instance=ExtResource("3_slime")]
+[node name="RedSlime2" parent="." unique_id=1360661504 instance=ExtResource("3_slime")]
 position = Vector2(750, 550)
 slime_variant = 3
 max_hp = 4
@@ -87,22 +80,16 @@ speed = 50.0
 aggro_range = 128.0
 drop_chance = 1.0
 
-[node name="Skeleton1" parent="." instance=ExtResource("6_skeleton")]
+[node name="Skeleton1" parent="." unique_id=25424660 instance=ExtResource("6_skeleton")]
 position = Vector2(450, 300)
 
-[node name="Skeleton2" parent="." instance=ExtResource("6_skeleton")]
+[node name="Skeleton2" parent="." unique_id=659088994 instance=ExtResource("6_skeleton")]
 position = Vector2(800, 500)
 
-[node name="SkeletonBoss" parent="." instance=ExtResource("6_skeleton")]
+[node name="Dragon" parent="." unique_id=64849422 instance=ExtResource("7_dragon")]
 position = Vector2(512, 384)
-is_boss = true
-max_hp = 8
-damage = 2
-speed = 35.0
-aggro_range = 999.0
-drop_chance = 1.0
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=531317432 instance=ExtResource("2_player")]
 position = Vector2(30, 384)
 
-[node name="HUD" parent="." instance=ExtResource("5_hud")]
+[node name="HUD" parent="." unique_id=1773687644 instance=ExtResource("5_hud")]

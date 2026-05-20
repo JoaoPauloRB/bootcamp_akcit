@@ -36,6 +36,9 @@ func _ready() -> void:
 		"vila": preload("res://assets/shared/audio/music/xDeviruchi - Take some rest and eat some food!.wav"),
 		"floresta": preload("res://assets/shared/audio/music/xDeviruchi - And The Journey Begins .wav"),
 		"dungeon": preload("res://assets/shared/audio/music/xDeviruchi - Mysterious Dungeon.wav"),
+		"vila_v2": preload("res://assets/shared/audio/generated_music/vila_v2.mp3"),
+		"floresta_v2": preload("res://assets/shared/audio/generated_music/floresta_v2.mp3"),
+		"dungeon_v2": preload("res://assets/shared/audio/generated_music/dungeon_v2.mp3"),
 	}
 
 	# Preload SFX
