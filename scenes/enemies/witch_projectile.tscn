@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ctq24px5y08u2"]
+
+[ext_resource type="Script" path="res://scripts/enemies/witch_projectile.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shape"]
+radius = 6.0
+
+[sub_resource type="Gradient" id="Gradient_trail"]
+colors = PackedColorArray(0.2, 0.6, 1.0, 1.0, 0.0, 0.2, 0.8, 0.0)
+
+[node name="WitchProjectile" type="Area2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_shape")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 15
+lifetime = 0.4
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_trail")

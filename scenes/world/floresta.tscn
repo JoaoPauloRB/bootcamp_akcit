@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cupufpgnw58x8" path="res://scripts/world/room_transition.gd" id="4_transition"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" uid="uid://hbfavrx8g3xk" path="res://scenes/enemies/orc.tscn" id="6_orc"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/witch.tscn" id="7_witch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
 size = Vector2(1024, 8)
@@ -95,6 +96,12 @@ position = Vector2(600, 300)
 
 [node name="Orc2" parent="." unique_id=2055251212 instance=ExtResource("6_orc")]
 position = Vector2(400, 600)
+
+[node name="Witch1" parent="." unique_id=98347101 instance=ExtResource("7_witch")]
+position = Vector2(700, 180)
+
+[node name="Witch2" parent="." unique_id=98347102 instance=ExtResource("7_witch")]
+position = Vector2(850, 600)
 
 [node name="Player" parent="." unique_id=1225617888 instance=ExtResource("2_player")]
 position = Vector2(35, 384)
